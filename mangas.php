@@ -12,6 +12,12 @@ function JuujikaNoRokunin()
     // Use Simple HTML DOM parser to fetch the HTML content of the page.
     $html = file_get_html("https://mangareader.to/juujika-no-rokunin-4340");
 
+    // Select manga name
+    $mangaName = $html->find(".manga-name", 0);
+
+    // Get the text content of the HTML element for $mangaName
+    $mangaNameText = $mangaName->plaintext;
+    
     // Select the first li element
     $chapterDiv = $html->find("#en-chapters li", 0);
 
@@ -39,6 +45,7 @@ function JuujikaNoRokunin()
         // Check if new chapter arrived by comparing numbers.
         if ($latestChapterNumber > $storedLatestChapterNumber) {
             if (abs($latestChapterNumber - $storedLatestChapterNumber === 2)) {
+
                 // Select the first li element.
                 $chapterDiv = $html->find("#en-chapters li", 1);
 
@@ -47,6 +54,7 @@ function JuujikaNoRokunin()
 
                 // Extract number from the title.
                 if (preg_match("/\d+/", $missedChapter, $match)) {
+
                     // Extract the chapter number and store it in $latestChapterNumber.
                     $missedChapterNumber = $match[0];
 
@@ -54,7 +62,7 @@ function JuujikaNoRokunin()
                     $missedChapter = str_replace("Read", "", $missedChapter);
 
                     // Send email about missed chapter
-                    missedChapterJNK($missedChapter, $missedChapterNumber);
+                    missedChapterJNK($mangaNameText, $missedChapter, $missedChapterNumber);
                 }
 
                 // Delay to have emails in old, new order instead of new, old.
@@ -62,7 +70,7 @@ function JuujikaNoRokunin()
             }
 
             // Send email about new chapter
-            newChapterJNK($latestChapter, $latestChapterNumber);
+            newChapterJNK($mangaNameText, $latestChapter, $latestChapterNumber);
 
             // Store latestchapter number into juujika-no-rokunin.txt
             file_put_contents(
@@ -78,6 +86,12 @@ function kagurabachi()
     // Use Simple HTML DOM parser to fetch the HTML content of the page.
     $html = file_get_html("https://mangareader.to/kagurabachi-67139");
 
+    // Select manga name
+    $mangaName = $html->find(".manga-name", 0);
+
+    // Get the text content of the HTML element for $mangaName
+    $mangaNameText = $mangaName->plaintext;
+    
     // Select the first li element
     $chapterDiv = $html->find("#en-chapters li", 0);
 
@@ -86,6 +100,7 @@ function kagurabachi()
 
     // Check if the latest chapter title contains a chapter number.
     if (preg_match("/\d+/", $latestChapter, $match)) {
+        
         // Extract the chapter number and store it in $latestChapterNumber.
         $latestChapterNumber = $match[0];
 
@@ -105,6 +120,7 @@ function kagurabachi()
         // Check if new chapter arrived by comparing numbers.
         if ($latestChapterNumber > $storedLatestChapterNumber) {
             if (abs($latestChapterNumber - $storedLatestChapterNumber === 2)) {
+                
                 // Select the first li element.
                 $chapterDiv = $html->find("#en-chapters li", 1);
 
@@ -120,7 +136,7 @@ function kagurabachi()
                     $missedChapter = str_replace("Read", "", $missedChapter);
 
                     // Send email about missed chapter
-                    missedChapterKB($missedChapter, $missedChapterNumber);
+                    missedChapterKB($mangaNameText, $missedChapter, $missedChapterNumber);
                 }
 
                 // Delay to have emails in old, new order instead of new, old.
@@ -128,7 +144,7 @@ function kagurabachi()
             }
 
             // Send email about new chapter
-            newChapterKB($latestChapter, $latestChapterNumber);
+            newChapterKB($mangaNameText, $latestChapter, $latestChapterNumber);
 
             // Store latestchapter number into kagurabachi.txt
             file_put_contents(

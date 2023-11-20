@@ -1,8 +1,8 @@
 <?php 
     // Sends email about new chapter.
-    function newChapterJNK ($latestChapter, $latestChapterNumber) {
+    function newChapterJNK ($mangaNameText, $latestChapter, $latestChapterNumber) {
         $to      = 'Ruben.Rosalia2002@gmail.com';
-        $subject = "New: ".$latestChapter;
+        $subject = "$mangaNameText New: ". $latestChapter;
         $message = '<!DOCTYPE html>
        <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
          <head>
@@ -134,9 +134,9 @@
     }
 
     // Sends email about missed chapter.
-    function missedChapterJNK ($missedChapter, $missedChapterNumber) {
+    function missedChapterJNK ($mangaNameText, $missedChapter, $missedChapterNumber) {
       $to      = 'Ruben.Rosalia2002@gmail.com';
-      $subject = "New: ".$missedChapter;
+      $subject = "$mangaNameText New:  ". $missedChapter;
       $message = '<!DOCTYPE html>
      <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
        <head>
@@ -266,11 +266,10 @@
        mail($to, $subject, $message, $headers);
   }
 
-
     // Sends email about new chapter.
-    function newChapterKB ($latestChapter, $latestChapterNumber) {
+    function newChapterKB ($mangaNameText, $latestChapter, $latestChapterNumber) {
         $to      = 'Ruben.Rosalia2002@gmail.com';
-        $subject = "New: ".$latestChapter;
+        $subject = "$mangaNameText New: " . $latestChapter;
         $message = '<!DOCTYPE html>
        <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
          <head>
@@ -402,9 +401,9 @@
     }
 
     // Sends email about new chapter.
-    function missedChapterKB ($missedChapter, $missedChapterNumber) {
+    function missedChapterKB ($mangaNameText, $missedChapter, $missedChapterNumber) {
       $to      = 'Ruben.Rosalia2002@gmail.com';
-      $subject = "New: ".$missedChapter;
+      $subject = "$mangaNameText New:  ". $missedChapter;
       $message = '<!DOCTYPE html>
      <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
        <head>
